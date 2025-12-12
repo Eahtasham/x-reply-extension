@@ -135,5 +135,4 @@ MIT License - see LICENSE file for details
 
 ## Disclaimer
 
-This extension is for educational and personal use. Please use responsibly and respect X/Twitter's terms of service. Automated posting may violate platform policies if used excessively.</content>
-<filePath>c:\Web_Dev_Files\x-reply-extension\README.md
+This extension is for educational and personal use. Please use responsibly and respect X/Twitter's terms of service. Automated posting may violate platform policies if used excessively
