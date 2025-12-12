@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <h2>X AI Reply Bot</h2>
+
+    <div class="settings">
+        <label for="geminiKey"><strong>Gemini API Key:</strong></label>
+        <input type="password" id="geminiKey" placeholder="Enter your Google Gemini API key">
+        <button id="saveKey">Save API Key</button>
+        <div id="status"></div>
+    </div>
+
+    <div class="settings">
+        <label><strong>Reply Settings:</strong></label>
+        <label class="checkbox-label">
+            <input type="checkbox" id="autoReply"> Auto-reply to all posts
+        </label>
+        <label class="checkbox-label">
+            <input type="checkbox" id="filterKeywords"> Filter by keywords
+        </label>
+        <input type="text" id="keywords" placeholder="Enter keywords (comma-separated)" class="hidden-input">
+        <label class="checkbox-label">
+            <input type="checkbox" id="filterAccounts"> Filter by accounts
+        </label>
+        <input type="text" id="accounts" placeholder="Enter accounts (comma-separated)" class="hidden-input">
+        <label>
+            Tone:
+            <select id="tone">
+                <option value="witty">Witty</option>
+                <option value="helpful">Helpful</option>
+                <option value="professional">Professional</option>
+                <option value="funny">Funny</option>
+                <option value="supportive">Supportive</option>
+            </select>
+        </label>
+        <button id="saveSettings">Save Settings</button>
+    </div>
+
+    <h3>Posts in Feed:</h3>
+    <div class="posts-list" id="postsList">
+        <p class="loading-text">Loading posts...</p>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

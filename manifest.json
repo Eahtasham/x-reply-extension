@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "X AI Reply Bot",
+    "version": "1.0",
+    "description": "Automatically reply to X posts with AI-generated messages using Google Gemini",
+    "permissions": [
+        "scripting",
+        "activeTab",
+        "storage"
+    ],
+    "host_permissions": [
+        "https://twitter.com/*",
+        "https://x.com/*"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "X AI Reply Bot",
+        "default_icon": {
+            "16": "images/icon16.png"
+        }
+    },
+    "icons": {
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://x.com/*",
+                "https://twitter.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ]
+}
