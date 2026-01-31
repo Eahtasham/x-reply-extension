@@ -170,6 +170,27 @@ function createReplyWidget(postText, composeArea) {
                 background: rgb(83, 100, 113);
                 cursor: not-allowed;
             }
+
+            .xreply-close-btn {
+                background: transparent;
+                border: none;
+                color: rgb(113, 118, 123);
+                cursor: pointer;
+                font-size: 20px;
+                padding: 4px 8px;
+                line-height: 1;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.2s, color 0.2s;
+                margin-left: 4px;
+            }
+
+            .xreply-close-btn:hover {
+                background: rgba(239, 243, 244, 0.1);
+                color: rgb(239, 243, 244);
+            }
             
             .xreply-custom-input {
                 width: 100%;
@@ -251,6 +272,7 @@ function createReplyWidget(postText, composeArea) {
                     <option value="supportive">Supportive</option>
                 </select>
                 <button class="xreply-go-btn" id="xreply-go">Go</button>
+                <button class="xreply-close-btn" id="xreply-close" aria-label="Close widget">×</button>
             </div>
             
             <input type="text" class="xreply-custom-input" id="xreply-custom" placeholder="Custom reply content (optional)">
@@ -283,6 +305,7 @@ function createReplyWidget(postText, composeArea) {
 // Setup event listeners for the widget
 function setupWidgetListeners(widget, postText, composeArea) {
     const goBtn = widget.querySelector('#xreply-go');
+    const closeBtn = widget.querySelector('#xreply-close');
     const toneSelect = widget.querySelector('#xreply-tone');
     const customInput = widget.querySelector('#xreply-custom');
     const typeBtns = widget.querySelectorAll('.xreply-type-btn');
@@ -297,6 +320,20 @@ function setupWidgetListeners(widget, postText, composeArea) {
             btn.classList.add('active');
             selectedType = btn.dataset.type;
         });
+    });
+
+    // Close button click
+    closeBtn.addEventListener('click', () => {
+        const widgetHost = document.getElementById('x-reply-widget-host');
+        if (widgetHost) {
+            widgetHost.remove();
+        }
+
+        // Clear injection marker
+        const modal = document.querySelector('[role="dialog"]');
+        if (modal) {
+            modal.removeAttribute('data-xreply-injected');
+        }
     });
 
     // Go button click
