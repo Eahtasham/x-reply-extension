@@ -120,38 +120,105 @@ function createReplyWidget(postText, composeArea) {
             }
             
             .xreply-container {
-                padding: 12px 16px;
-                border-top: 1px solid rgb(47, 51, 54);
-                background: rgb(0, 0, 0);
+                padding: 16px;
+                border-radius: 16px;
+                background: rgba(0, 0, 0, 0.85);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+                border: 1px solid rgba(255, 255, 255, 0.1);
                 box-sizing: border-box;
+                color: white;
+                max-width: 600px;
             }
             
             .xreply-top-row {
                 display: flex;
                 align-items: center;
-                justify-content: flex-end;
-                gap: 8px;
-                margin-bottom: 10px;
+                justify-content: space-between;
+                margin-bottom: 12px;
+                gap: 12px;
+                position: relative; /* For dropdown positioning */
             }
-            
-            .xreply-tone-select {
-                padding: 6px 12px;
+
+            /* Custom Dropdown Styling */
+            .xreply-dropdown {
+                position: relative;
+                min-width: 140px;
+            }
+
+            .xreply-dropdown-trigger {
+                padding: 8px 16px;
                 border-radius: 20px;
-                border: 1px solid rgb(83, 100, 113);
-                background: transparent;
+                background: rgba(255, 255, 255, 0.1);
                 color: rgb(231, 233, 234);
                 font-size: 14px;
                 cursor: pointer;
-                min-width: 120px;
+                border: 1px solid transparent;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                transition: all 0.2s;
             }
-            
-            .xreply-tone-select:focus {
-                outline: none;
+
+            .xreply-dropdown-trigger:hover {
+                background: rgba(255, 255, 255, 0.15);
+            }
+
+            .xreply-dropdown-trigger.active {
                 border-color: rgb(29, 155, 240);
+                background: rgba(29, 155, 240, 0.1);
+            }
+
+            .xreply-dropdown-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                margin-top: 8px;
+                background: rgb(22, 24, 28); /* X dark bg */
+                border: 1px solid rgb(47, 51, 54);
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+                z-index: 1000;
+                display: none;
+                flex-direction: column;
+                min-width: 160px;
+                overflow: hidden;
+            }
+
+            .xreply-dropdown-menu.show {
+                display: flex;
+            }
+
+            .xreply-dropdown-item {
+                padding: 10px 16px;
+                font-size: 14px;
+                color: rgb(231, 233, 234);
+                cursor: pointer;
+                transition: background 0.2s;
+                text-align: left;
+                background: none;
+                border: none;
+                width: 100%;
+            }
+
+            .xreply-dropdown-item:hover {
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            .xreply-dropdown-item.selected {
+                color: rgb(29, 155, 240);
+                font-weight: bold;
+                background: rgba(29, 155, 240, 0.05);
             }
             
+            .xreply-actions {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+            }
+
             .xreply-go-btn {
-                padding: 6px 16px;
+                padding: 8px 20px;
                 border-radius: 20px;
                 border: none;
                 background: rgb(29, 155, 240);
@@ -159,70 +226,79 @@ function createReplyWidget(postText, composeArea) {
                 font-size: 14px;
                 font-weight: 700;
                 cursor: pointer;
-                transition: background 0.2s;
+                transition: all 0.2s;
+                box-shadow: 0 2px 8px rgba(29, 155, 240, 0.3);
             }
             
             .xreply-go-btn:hover {
                 background: rgb(26, 140, 216);
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(29, 155, 240, 0.4);
             }
             
             .xreply-go-btn:disabled {
                 background: rgb(83, 100, 113);
                 cursor: not-allowed;
+                transform: none;
+                box-shadow: none;
             }
 
             .xreply-close-btn {
-                background: transparent;
+                background: rgba(255, 255, 255, 0.1);
                 border: none;
                 color: rgb(113, 118, 123);
                 cursor: pointer;
-                font-size: 20px;
-                padding: 4px 8px;
-                line-height: 1;
+                width: 32px;
+                height: 32px;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                transition: background 0.2s, color 0.2s;
-                margin-left: 4px;
+                font-size: 18px;
+                transition: all 0.2s;
             }
 
             .xreply-close-btn:hover {
-                background: rgba(239, 243, 244, 0.1);
-                color: rgb(239, 243, 244);
+                background: rgba(244, 33, 46, 0.1);
+                color: rgb(244, 33, 46);
             }
             
+            /* Enhanced Input */
             .xreply-custom-input {
                 width: 100%;
-                padding: 10px 12px;
-                border-radius: 16px;
-                border: 1px solid rgb(83, 100, 113);
-                background: transparent;
+                padding: 12px 16px;
+                border-radius: 12px;
+                border: 1px solid rgba(83, 100, 113, 0.5);
+                background: rgba(0, 0, 0, 0.3);
                 color: rgb(231, 233, 234);
-                font-size: 14px;
-                margin-bottom: 10px;
+                font-size: 15px;
+                margin-bottom: 16px;
                 box-sizing: border-box;
+                transition: all 0.2s;
             }
             
             .xreply-custom-input::placeholder {
-                color: rgb(113, 118, 123);
+                color: rgba(113, 118, 123, 0.8);
             }
             
             .xreply-custom-input:focus {
                 outline: none;
                 border-color: rgb(29, 155, 240);
+                background: rgba(0, 0, 0, 0.6);
+                box-shadow: 0 0 0 2px rgba(29, 155, 240, 0.2);
             }
             
             .xreply-types-container {
                 display: flex;
                 flex-wrap: wrap;
                 gap: 8px;
+                margin-bottom: 8px;
             }
             
             .xreply-type-btn {
-                padding: 6px 12px;
-                border-radius: 20px;
-                border: 1px solid rgb(83, 100, 113);
+                padding: 8px 14px;
+                border-radius: 18px;
+                border: 1px solid rgba(83, 100, 113, 0.4);
                 background: transparent;
                 color: rgb(231, 233, 234);
                 font-size: 13px;
@@ -230,25 +306,29 @@ function createReplyWidget(postText, composeArea) {
                 transition: all 0.2s;
                 display: flex;
                 align-items: center;
-                gap: 4px;
+                gap: 6px;
+                font-weight: 500;
             }
             
             .xreply-type-btn:hover {
-                background: rgba(29, 155, 240, 0.1);
-                border-color: rgb(29, 155, 240);
+                background: rgba(255, 255, 255, 0.05);
+                border-color: rgba(255, 255, 255, 0.3);
+                transform: translateY(-1px);
             }
             
             .xreply-type-btn.active {
-                background: rgba(29, 155, 240, 0.2);
+                background: rgba(29, 155, 240, 0.15);
                 border-color: rgb(29, 155, 240);
                 color: rgb(29, 155, 240);
             }
             
             .xreply-status {
-                margin-top: 8px;
-                font-size: 12px;
+                margin-top: 12px;
+                font-size: 13px;
                 color: rgb(113, 118, 123);
                 text-align: center;
+                min-height: 20px;
+                transition: color 0.3s;
             }
             
             .xreply-status.error {
@@ -258,24 +338,46 @@ function createReplyWidget(postText, composeArea) {
             .xreply-status.success {
                 color: rgb(0, 186, 124);
             }
+
+            /* Animations */
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            .xreply-container {
+                animation: fadeIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            }
         </style>
         
         <div class="xreply-container">
             <div class="xreply-top-row">
-                <select class="xreply-tone-select" id="xreply-tone">
-                    <option value="auto">Auto</option>
-                    <option value="condense">Condense</option>
-                    <option value="witty">Witty</option>
-                    <option value="helpful">Helpful</option>
-                    <option value="professional">Professional</option>
-                    <option value="funny">Funny</option>
-                    <option value="supportive">Supportive</option>
-                </select>
-                <button class="xreply-go-btn" id="xreply-go">Go</button>
-                <button class="xreply-close-btn" id="xreply-close" aria-label="Close widget">×</button>
+                <!-- Custom Dropdown -->
+                <div class="xreply-dropdown" id="xreply-tone-dropdown">
+                    <div class="xreply-dropdown-trigger" id="xreply-tone-trigger">
+                        <span id="xreply-tone-label">Auto</span>
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-left: 8px; opacity: 0.7;">
+                            <path d="M12 15.4L6 9.4L7.4 8L12 12.6L16.6 8L18 9.4L12 15.4Z"></path>
+                        </svg>
+                    </div>
+                    <div class="xreply-dropdown-menu" id="xreply-tone-menu">
+                        <button class="xreply-dropdown-item selected" data-value="auto">Auto</button>
+                        <button class="xreply-dropdown-item" data-value="condense">Condense</button>
+                        <button class="xreply-dropdown-item" data-value="witty">Witty</button>
+                        <button class="xreply-dropdown-item" data-value="helpful">Helpful</button>
+                        <button class="xreply-dropdown-item" data-value="professional">Professional</button>
+                        <button class="xreply-dropdown-item" data-value="funny">Funny</button>
+                        <button class="xreply-dropdown-item" data-value="supportive">Supportive</button>
+                    </div>
+                </div>
+
+                <div class="xreply-actions">
+                    <button class="xreply-go-btn" id="xreply-go">Generate Reply</button>
+                    <button class="xreply-close-btn" id="xreply-close" aria-label="Close widget">×</button>
+                </div>
             </div>
             
-            <input type="text" class="xreply-custom-input" id="xreply-custom" placeholder="Custom reply content (optional)">
+            <input type="text" class="xreply-custom-input" id="xreply-custom" placeholder="Add custom instructions... (e.g. 'be sarcastic')">
             
             <div class="xreply-types-container">
                 <button class="xreply-type-btn active" data-type="auto">⚡ Auto</button>
@@ -285,10 +387,10 @@ function createReplyWidget(postText, composeArea) {
                 <button class="xreply-type-btn" data-type="congrats">🎉 Congrats</button>
                 <button class="xreply-type-btn" data-type="thanks">♥ Thanks</button>
                 <button class="xreply-type-btn" data-type="joke">😊 Joke</button>
-                <button class="xreply-type-btn" data-type="question">❓ Question</button>
-                <button class="xreply-type-btn" data-type="excitement">🎯 Excitement</button>
-                <button class="xreply-type-btn" data-type="sarcastic">😏 Sarcastic</button>
-                <button class="xreply-type-btn" data-type="insightful">💡 Insightful</button>
+                <button class="xreply-type-btn" data-type="question">❓ Ask</button>
+                <button class="xreply-type-btn" data-type="excitement">🎯 Hype</button>
+                <button class="xreply-type-btn" data-type="sarcastic">😏 Snark</button>
+                <button class="xreply-type-btn" data-type="insightful">💡 Smart</button>
                 <button class="xreply-type-btn" data-type="building">🔨 Building</button>
             </div>
             
@@ -299,6 +401,14 @@ function createReplyWidget(postText, composeArea) {
     // Setup event listeners using shadow root
     setupWidgetListeners(shadow, postText, composeArea);
 
+    // Stop propagation of events to prevent X's global handlers from interfering
+    // This fixes the issue where clicking the dropdown or input closes the widget or loses focus
+    ['click', 'mousedown', 'mouseup', 'keydown', 'keyup', 'focus', 'blur'].forEach(eventType => {
+        widgetHost.addEventListener(eventType, (e) => {
+            e.stopPropagation();
+        });
+    });
+
     return widgetHost;
 }
 
@@ -306,14 +416,53 @@ function createReplyWidget(postText, composeArea) {
 function setupWidgetListeners(widget, postText, composeArea) {
     const goBtn = widget.querySelector('#xreply-go');
     const closeBtn = widget.querySelector('#xreply-close');
-    const toneSelect = widget.querySelector('#xreply-tone');
     const customInput = widget.querySelector('#xreply-custom');
     const typeBtns = widget.querySelectorAll('.xreply-type-btn');
     const statusDiv = widget.querySelector('#xreply-status');
 
-    let selectedType = 'auto';
+    // Custom Dropdown Elements
+    const toneDropdown = widget.querySelector('#xreply-tone-dropdown');
+    const toneTrigger = widget.querySelector('#xreply-tone-trigger');
+    const toneMenu = widget.querySelector('#xreply-tone-menu');
+    const toneLabel = widget.querySelector('#xreply-tone-label');
+    const toneItems = widget.querySelectorAll('.xreply-dropdown-item');
 
-    // Type button selection
+    let selectedType = 'auto';
+    let selectedTone = 'auto';
+
+    // --- Custom Dropdown Logic ---
+    toneTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toneMenu.classList.toggle('show');
+        toneTrigger.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    // We attach this to the *widget root* because we stopped propagation to the document.
+    widget.addEventListener('click', (e) => {
+        if (!toneDropdown.contains(e.target)) {
+            toneMenu.classList.remove('show');
+            toneTrigger.classList.remove('active');
+        }
+    });
+
+    toneItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation(); // prevent closing widget if we had global listeners
+            selectedTone = item.dataset.value;
+            toneLabel.textContent = item.textContent;
+
+            // UI Update
+            toneItems.forEach(i => i.classList.remove('selected'));
+            item.classList.add('selected');
+
+            // Close menu
+            toneMenu.classList.remove('show');
+            toneTrigger.classList.remove('active');
+        });
+    });
+
+    // --- Type Buttons ---
     typeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             typeBtns.forEach(b => b.classList.remove('active'));
@@ -322,41 +471,36 @@ function setupWidgetListeners(widget, postText, composeArea) {
         });
     });
 
-    // Close button click
+    // --- Close Button ---
     closeBtn.addEventListener('click', () => {
         const widgetHost = document.getElementById('x-reply-widget-host');
         if (widgetHost) {
             widgetHost.remove();
         }
 
-        // Clear injection marker
         const modal = document.querySelector('[role="dialog"]');
         if (modal) {
             modal.removeAttribute('data-xreply-injected');
         }
     });
 
-    // Go button click
+    // --- Go Button ---
     goBtn.addEventListener('click', async () => {
         goBtn.disabled = true;
-        goBtn.textContent = '...';
-        statusDiv.textContent = 'Generating reply...';
+        goBtn.textContent = 'Generating...';
+        statusDiv.textContent = 'Thinking...';
         statusDiv.className = 'xreply-status';
 
         try {
-            // Get API key from storage
             const apiKey = await getApiKey();
             if (!apiKey) {
                 throw new Error('API key not set. Please set it in the extension popup.');
             }
 
-            const tone = toneSelect.value;
             const customContent = customInput.value.trim();
 
-            // Generate reply
-            const reply = await generateReply(postText, apiKey, tone, selectedType, customContent);
+            const reply = await generateReply(postText, apiKey, selectedTone, selectedType, customContent);
 
-            // Insert into compose area - get fresh reference from modal
             const modal = document.querySelector('[role="dialog"]');
             let freshComposeArea = modal?.querySelector('[data-testid="tweetTextarea_0"]')
                 || modal?.querySelector('[contenteditable="true"][role="textbox"]')
@@ -367,29 +511,24 @@ function setupWidgetListeners(widget, postText, composeArea) {
             }
 
             console.log('Generated reply:', reply);
-            console.log('Compose area found:', freshComposeArea);
 
             await insertReplyText(freshComposeArea, reply);
 
-            // SUCCESS: Remove the widget to avoid blocking the view
             const widgetHost = document.getElementById('x-reply-widget-host');
             if (widgetHost) {
                 widgetHost.remove();
             }
 
-            // Clear injection marker so widget can be re-injected if user opens modal again
             if (modal) {
                 modal.removeAttribute('data-xreply-injected');
             }
-
-            console.log('Reply inserted and widget removed');
 
         } catch (error) {
             console.error('Error generating reply:', error);
             statusDiv.textContent = error.message;
             statusDiv.className = 'xreply-status error';
             goBtn.disabled = false;
-            goBtn.textContent = 'Go';
+            goBtn.textContent = 'Generate Reply';
         }
     });
 }
@@ -443,17 +582,18 @@ The user posted this text: "${postText}"
 ${customContent ? `\nUser's custom direction: "${customContent}"` : ''}
 
 TASK:
-Write a reply strictly under 280 characters that directly addresses the specific topic of the post.
+Write a reply strictly under 280 characters.
 The reply should: ${typeInstruction}
 
 GUIDELINES:
-1. RELEVANCE FIRST: If it's a meme, be witty/relatable. If it's code, offer feedback/praise. If it's a question, answer it.
-2. TONE: ${toneInstruction}
-3. VALUE: Add a specific insight, a quick tip, or a validating comment related to their specific struggle or win.
-4. FORMAT: Short sentences. No fluff. No hashtags. No emojis unless absolutely necessary.
-5. ENDING: Always end with "Let's connect and FB!" (FB means follow back) when it fits naturally.
-6. Keep it under 280 characters including the ending.
-${isBuildingType ? '7. IMPORTANT: Naturally weave in that you are building OneScript - a SaaS that lets website owners add a customer service bot with just one script tag. Make it relevant to their post.' : ''}
+1. IMPERFECTION IS GOOD: Do NOT write like a perfect AI. It's okay to start with lowercase. It's okay to have a relaxed sentence structure. Sound like a busy human on their phone.
+2. TONE: ${toneInstruction}. Avoid "bot-like" transition words (e.g., "Furthermore", "In conclusion", "Additionally").
+3. RELEVANCE: Directly address the content. If it's a joke, laugh (e.g., "lol", "haha"). If it's serious, be brief and supportive.
+4. VALUE: Add a specific insight or validation.
+5. FORMAT: Short sentences. No fluff. No hashtags. Minimize emojis (max 1 suitable one).
+6. ENDING: Always end with "Let's connect and FB!" (FB means follow back) when it fits naturally.
+7. LENGTH: Keep it under 280 chars. 
+${isBuildingType ? '8. IMPORTANT: Naturally weave in that you are building OneScript - a SaaS that lets website owners add a customer service bot with just one script tag.' : ''}
 `;
 
     const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + apiKey, {
