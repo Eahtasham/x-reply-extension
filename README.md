@@ -1,139 +1,78 @@
-# X AI Reply Bot
+# X Reply Ninja ⚡
 
-A Chrome extension that automatically generates and posts AI-powered replies to X (formerly Twitter) posts using Google Gemini.
+A powerful Chrome extension that integrates directly into X (formerly Twitter) to generate AI-powered replies. Features a seamless inline widget that appears right inside the comment modal, helping you grow your audience and connect with others effortlessly.
 
-## Features
+## ✨ Features
 
-- **AI-Powered Replies**: Generate contextually relevant replies using Google's Gemini AI
-- **Multiple Tones**: Choose from witty, helpful, professional, funny, or supportive reply styles
-- **Smart Filtering**: Filter posts by keywords or specific accounts
-- **Manual Control**: Review and approve each reply before posting
-- **Seamless Integration**: Works directly on X.com and Twitter.com pages
+- **Inline Integration**: The "X Reply Ninja" widget appears automatically inside X's reply modal.
+- **Smart Tone Selection**: Choose from multiple tones like Witty, Professional, Funny, Helpful, and more.
+- **Reply Types**: Quick buttons for common reply types (Agree, Disagree, Congrats, Joke, Insightful, etc.).
+- **"Building" Mode**: Special mode for founders to naturally promote **OneScript** (or your own product) while providing value.
+- **Custom Input**: Add your own direction to guide the AI's response.
+- **Smart Connection**: Automatically adds "Let's connect and FB!" (follow back) when appropriate.
+- **Privacy Focused**: Runs entirely locally in your browser (communicates only with Google Gemini API).
 
-## Installation
+## 🚀 Installation
 
-### Chrome/Edge
-1. Download or clone this repository
-2. Open Chrome and go to `chrome://extensions/`
-3. Enable "Developer mode" in the top right
-4. Click "Load unpacked" and select the extension folder
-5. The extension should now appear in your extensions list
+### Chrome / Edge / Brave
 
-### Firefox
-1. Download or clone this repository
-2. Open Firefox and go to `about:debugging`
-3. Click "This Firefox" in the sidebar
-4. Click "Load Temporary Add-on"
-5. Select the `manifest.json` file from the extension folder
+1. **Download the Extension**: Clone or download this repository to a folder on your computer.
+2. **Open Extensions Page**: Go to `chrome://extensions/` in your browser.
+3. **Enable Developer Mode**: Toggle the switch in the top-right corner.
+4. **Load Unpacked**: Click the "Load unpacked" button and select the folder where you downloaded this project.
+5. **Pin the Extension**: Click functionality requires the extension to be active.
 
-## Setup
+## 🔑 Setup
 
 1. **Get a Gemini API Key**:
-   - Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
-   - Create a new API key
-   - Copy the API key
-
+   - Visit [Google AI Studio](https://makersuite.google.com/app/apikey).
+   - Create a free API key.
+   
 2. **Configure the Extension**:
-   - Click the extension icon in your browser toolbar
-   - Enter your Gemini API key in the "Gemini API Key" field
-   - Click "Save API Key"
+   - Click the extension icon in your toolbar.
+   - Paste your API Key into the "Gemini API Key" field.
+   - Click "Save API Key".
 
-3. **Customize Settings** (Optional):
-   - Choose your preferred reply tone
-   - Enable keyword filtering to only reply to posts containing specific words
-   - Enable account filtering to only reply to specific users
-   - Save your settings
+## 💡 How to Use
 
-## Usage
+1. **Find a Post**: Go to X.com and find a tweet you want to reply to.
+2. **Click Reply**: Click the standard reply/comment button on the tweet.
+3. **Use the Ninja Widget**:
+   - The **X Reply Ninja** widget will appear inside the modal.
+   - Select a **Tone** (Auto, Witty, Professional, etc.).
+   - Click a **Reply Type** button (Support, Agree, Insightful, etc.).
+   - *Optional*: Type a custom instruction in the input box.
+   - Click **Go**.
+4. **Review & Send**:
+   - The AI generates a reply and inserts it into the text box.
+   - The widget automatically disappears so you can review the text.
+   - Click **Reply** to post!
 
-1. Navigate to [X.com](https://x.com) or [Twitter.com](https://twitter.com)
-2. Click the X AI Reply Bot extension icon
-3. The popup will show recent posts from your feed
-4. Click "Generate Reply" on any post you want to respond to
-5. The extension will:
-   - Generate an AI reply based on the post content and your chosen tone
-   - Automatically open the reply modal
-   - Insert the generated reply
-   - Post the reply
-
-## Configuration Options
+## 🛠️ Configuration Options
 
 ### Reply Tones
-- **Witty**: Clever and engaging responses
-- **Helpful**: Informative and supportive replies
-- **Professional**: Respectful and business-appropriate
-- **Funny**: Humorous and entertaining
-- **Supportive**: Encouraging and positive
+- **Auto**: Best fit for the context.
+- **Condense**: Short and punchy.
+- **Witty**: Clever and engaging.
+- **Professional**: Respectful and business-like.
+- **Funny**: Humorous and entertaining.
+- **Supportive**: Encouraging and positive.
 
-### Filtering
-- **Keywords**: Only show posts containing specific words or phrases
-- **Accounts**: Only show posts from specific users
+### Special Reply Types
+- **🔨 Building**: Specifically designed for founders. Relates to the post and naturally mentions you are building **OneScript** - a SaaS that lets website owners add a customer service bot with just one script tag.
+- **⚡ Auto**: Standard smart reply.
+- **💡 Insightful**: Adds value or a new perspective.
 
-## Permissions
+## 🔒 Privacy
 
-The extension requires the following permissions:
-- `scripting`: To interact with X/Twitter pages
-- `activeTab`: To access the current tab
-- `storage`: To save your API key and settings
-- Host permissions for `https://x.com/*` and `https://twitter.com/*`
+- **Local Storage**: Your API key is stored locally in your browser.
+- **No Tracking**: We do not track your browsing history or data.
+- **Direct Communication**: The extension communicates directly between your browser and Google's Gemini API.
 
-## Privacy
+## 📝 License
 
-- Your Gemini API key is stored locally in your browser's storage
-- No data is sent to external servers except for API calls to Google's Gemini service
-- All processing happens locally on your device
+MIT License - feel free to modify and use for your own projects!
 
-## Troubleshooting
+---
 
-### "Please open this extension on X.com or Twitter.com"
-- Make sure you're on x.com or twitter.com
-- Try refreshing the page
-
-### "Error loading posts"
-- Ensure you're logged into X/Twitter
-- Try scrolling down to load more posts
-- Refresh the page
-
-### "Gemini API error"
-- Verify your API key is correct
-- Check your internet connection
-- Ensure your Gemini API quota hasn't been exceeded
-
-### Reply not posting
-- The extension simulates user interactions, but X's UI may change
-- Try again or refresh the page
-- Check if you have posting permissions on X
-
-## Development
-
-### Project Structure
-```
-x-reply-extension/
-├── manifest.json      # Extension manifest
-├── popup.html         # Extension popup UI
-├── popup.js           # Popup functionality
-├── popup.css          # Popup styling
-├── content.js         # Content script for X/Twitter pages
-└── images/            # Extension icons
-    ├── icon16.png
-    ├── icon48.png
-    └── icon128.png
-```
-
-### Building
-No build process required - this is a pure JavaScript extension.
-
-### Contributing
-1. Fork the repository
-2. Make your changes
-3. Test thoroughly on X.com
-4. Submit a pull request
-
-## License
-
-MIT License - see LICENSE file for details
-
-## Disclaimer
-
-This extension is for educational and personal use. Please use responsibly and respect X/Twitter's terms of service. Automated posting may violate platform policies if used excessively.</content>
-<filePath>c:\Web_Dev_Files\x-reply-extension\README.md
+*Note: This extension is for educational and personal productivity purposes. Always adhere to X's terms of service.*
