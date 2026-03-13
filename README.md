@@ -1,15 +1,15 @@
-# X Reply Ninja ⚡
+# AI Reply Bot ⚡
 
-A powerful Chrome extension that integrates directly into X (formerly Twitter) to generate AI-powered replies. Features a seamless inline widget that appears right inside the comment modal, helping you grow your audience and connect with others effortlessly.
+A powerful Chrome extension that integrates directly into **X (Twitter)** and **LinkedIn** to generate AI-powered replies and comments. Features seamless inline widgets that appear right inside the comment areas, helping you grow your audience and connect with others effortlessly.
 
 ## ✨ Features
 
-- **Inline Integration**: The "X Reply Ninja" widget appears automatically inside X's reply modal.
-- **Smart Tone Selection**: Choose from multiple tones like Witty, Professional, Funny, Helpful, and more.
-- **Reply Types**: Quick buttons for common reply types (Agree, Disagree, Congrats, Joke, Insightful, etc.).
+- **Multi-Platform**: Works on both **X (Twitter)** and **LinkedIn**.
+- **Inline Integration**: The AI widget appears automatically inside X's reply modal and LinkedIn's comment box.
+- **Smart Tone Selection**: Choose from multiple tones — Auto, Witty, Professional, Funny, Helpful, Supportive, and more.
+- **Reply Types**: Quick buttons for common reply types (Agree, Disagree, Congrats, Insightful, Ask, etc.).
 - **"Building" Mode**: Special mode for founders to naturally promote **OneScript** (or your own product) while providing value.
 - **Custom Input**: Add your own direction to guide the AI's response.
-- **Smart Connection**: Automatically adds "Let's connect and FB!" (follow back) when appropriate.
 - **Privacy Focused**: Runs entirely locally in your browser (communicates only with Google Gemini API).
 
 ## 🚀 Installation
@@ -35,33 +35,41 @@ A powerful Chrome extension that integrates directly into X (formerly Twitter) t
 
 ## 💡 How to Use
 
-1. **Find a Post**: Go to X.com and find a tweet you want to reply to.
-2. **Click Reply**: Click the standard reply/comment button on the tweet.
-3. **Use the Ninja Widget**:
-   - The **X Reply Ninja** widget will appear inside the modal.
-   - Select a **Tone** (Auto, Witty, Professional, etc.).
-   - Click a **Reply Type** button (Support, Agree, Insightful, etc.).
-   - *Optional*: Type a custom instruction in the input box.
-   - Click **Go**.
-4. **Review & Send**:
-   - The AI generates a reply and inserts it into the text box.
-   - The widget automatically disappears so you can review the text.
-   - Click **Reply** to post!
+### On X (Twitter)
+
+1. Go to **X.com** and find a tweet you want to reply to.
+2. Click the **reply/comment** button on the tweet.
+3. The AI widget appears inside the reply modal.
+4. Select a **Tone**, click a **Reply Type**, and optionally add custom instructions.
+5. Click **Generate Reply** — the AI inserts the reply into the text box.
+6. Review and click **Reply** to post!
+
+### On LinkedIn
+
+1. Go to **linkedin.com/feed** and find a post you want to comment on.
+2. Click the **Comment** button on the post.
+3. The AI widget appears above the comment editor.
+4. Select a **Tone**, click a **Comment Type**, and optionally add custom instructions.
+5. Click **Generate Comment** — the AI inserts the comment into the editor.
+6. Review and click **Post** to comment!
 
 ## 🛠️ Configuration Options
 
-### Reply Tones
-- **Auto**: Best fit for the context.
-- **Condense**: Short and punchy.
-- **Witty**: Clever and engaging.
-- **Professional**: Respectful and business-like.
-- **Funny**: Humorous and entertaining.
-- **Supportive**: Encouraging and positive.
+### Tones
+| Tone | Description |
+|------|-------------|
+| **Auto** | Best fit for the context |
+| **Condense** | Short and punchy |
+| **Witty** | Clever and engaging |
+| **Professional** | Respectful and business-like |
+| **Funny** | Humorous and entertaining |
+| **Supportive** | Encouraging and positive |
 
 ### Special Reply Types
-- **🔨 Building**: Specifically designed for founders. Relates to the post and naturally mentions you are building **OneScript** - a SaaS that lets website owners add a customer service bot with just one script tag.
-- **⚡ Auto**: Standard smart reply.
+- **🔨 Building**: Designed for founders — naturally mentions your product while adding value.
+- **⚡ Auto**: Standard smart reply/comment.
 - **💡 Insightful**: Adds value or a new perspective.
+- **❓ Ask**: Asks a thoughtful follow-up question.
 
 ## 🔒 Privacy
 
@@ -75,4 +83,4 @@ MIT License - feel free to modify and use for your own projects!
 
 ---
 
-*Note: This extension is for educational and personal productivity purposes. Always adhere to X's terms of service.*
+*Note: This extension is for educational and personal productivity purposes. Always adhere to X's and LinkedIn's terms of service.*

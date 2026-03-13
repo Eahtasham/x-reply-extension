@@ -14,8 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Only load posts if on X.com or twitter.com
         if (currentTab.url.includes('x.com') || currentTab.url.includes('twitter.com')) {
             loadPosts();
+        } else if (currentTab.url.includes('linkedin.com')) {
+            document.getElementById('postsList').innerHTML = '<p class="loading-text">✅ LinkedIn support active — click <strong>Comment</strong> on any post to generate an AI comment.</p>';
         } else {
-            document.getElementById('postsList').innerHTML = '<p class="loading-text">⚠️ Please open this extension on X.com or Twitter.com</p>';
+            document.getElementById('postsList').innerHTML = '<p class="loading-text">⚠️ Please open this extension on X.com, Twitter.com, or LinkedIn.com</p>';
         }
     });
 

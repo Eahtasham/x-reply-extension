@@ -566,7 +566,7 @@ async function generateReply(postText, apiKey, tone, replyType, customContent) {
         excitement: 'show enthusiasm and excitement',
         sarcastic: 'be playfully sarcastic (but not mean)',
         insightful: 'add an insightful observation or perspective',
-        building: 'relate to their post and naturally mention that you are building OneScript - a SaaS that lets any website owner implement a customer service bot using just one script tag that replies from their provided knowledge base'
+        building: 'relate to their post and naturally mention that you are building OneScript - a simple tool that lets businesses add chat, support, lead capture, and automation to their website with just one script. Must mention onescript.xyz and invite them to try it out'
     };
 
     const toneInstruction = toneInstructions[tone] || toneInstructions.auto;
@@ -575,25 +575,31 @@ async function generateReply(postText, apiKey, tone, replyType, customContent) {
     // Special prompt for "building" type
     const isBuildingType = replyType === 'building';
 
-    let prompt = `You are a helpful, practical, founder-minded assistant.
-    
-CONTEXT:
-The user posted this text: "${postText}"
-${customContent ? `\nUser's custom direction: "${customContent}"` : ''}
+    let prompt = `You are replying to a tweet as a real person. READ THE TWEET CAREFULLY.
+
+TWEET: "${postText}"
+${customContent ? `\nUser's direction: "${customContent}"` : ''}
+
+CRITICAL - Understand the tweet first:
+- If they're sharing a PROBLEM/frustration → empathize or relate (NEVER say "congrats" or "awesome")
+- If they're celebrating success → congratulate genuinely
+- If they're asking a question → engage with the question
+- If they're venting/complaining → show understanding, don't be dismissive
+- If it's a joke → laugh along
 
 TASK:
-Write a reply strictly under 280 characters.
-The reply should: ${typeInstruction}
+Write a reply under 280 characters.
+Reply style: ${typeInstruction}
 
 GUIDELINES:
-1. IMPERFECTION IS GOOD: Do NOT write like a perfect AI. It's okay to start with lowercase. It's okay to have a relaxed sentence structure. Sound like a busy human on their phone.
-2. TONE: ${toneInstruction}. Avoid "bot-like" transition words (e.g., "Furthermore", "In conclusion", "Additionally").
-3. RELEVANCE: Directly address the content. If it's a joke, laugh (e.g., "lol", "haha"). If it's serious, be brief and supportive.
-4. VALUE: Add a specific insight or validation.
-5. FORMAT: Short sentences. No fluff. No hashtags. Minimize emojis (max 1 suitable one).
-6. ENDING: Always end with "Let's connect and FB!" (FB means follow back) when it fits naturally.
-7. LENGTH: Keep it under 280 chars. 
-${isBuildingType ? '8. IMPORTANT: Naturally weave in that you are building OneScript - a SaaS that lets website owners add a customer service bot with just one script tag.' : ''}
+1. IMPERFECTION IS GOOD: Start with lowercase sometimes. Sound like a busy human on their phone.
+2. TONE: ${toneInstruction}. No bot-like transition words.
+3. RELEVANCE: Directly address what they said. Match the mood - don't give mismatched responses!
+4. VALUE: Add insight that makes sense for their message.
+5. FORMAT: Short sentences. No hashtags. Max 1 emoji.
+6. ENDING: End with "Let's connect and FB!" when it fits naturally.
+7. LENGTH: Under 280 chars. 
+${isBuildingType ? '8. IMPORTANT: Naturally mention you are building OneScript - a simple tool for website automation (chat, support, leads) with just one script. Try it at onescript.xyz' : ''}
 `;
 
     const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + apiKey, {

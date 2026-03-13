@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "X AI Reply Bot",
-    "version": "1.0",
-    "description": "Automatically reply to X posts with AI-generated messages using Google Gemini",
+    "name": "AI Reply Bot",
+    "version": "1.1",
+    "description": "Automatically reply to X posts and LinkedIn comments with AI-generated messages using Google Gemini",
     "permissions": [
         "scripting",
         "activeTab",
@@ -10,11 +10,12 @@
     ],
     "host_permissions": [
         "https://twitter.com/*",
-        "https://x.com/*"
+        "https://x.com/*",
+        "https://www.linkedin.com/*"
     ],
     "action": {
         "default_popup": "popup.html",
-        "default_title": "X AI Reply Bot",
+        "default_title": "AI Reply Bot",
         "default_icon": {
             "16": "images/icon16.png"
         }
@@ -33,6 +34,14 @@
             "js": [
                 "content.js"
             ]
+        },
+        {
+            "matches": [
+                "https://www.linkedin.com/*"
+            ],
+            "js": [
+                "linkedin-content.js"
+            ]
         }
     ]
-}
+}
